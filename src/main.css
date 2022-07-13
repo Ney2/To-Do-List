@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10% 70% 50% 30%;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 3px 8px;
+}
+
+.heading {
+  text-align: center;
+  padding: 10px;
+}
+
+.listInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.listInput input {
+  width: 55%;
+  height: 24px;
+}
+
+.listInput input :focus {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.listInput input::placeholder {
+  font-style: italic;
+  font-size: 16px;
+}
+
+.lists {
+  list-style-type: none;
+}
+
+.todos {
+  padding: 10px;
+  display: flex;
+  gap: 5%;
+  justify-content: center;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.todos .checkbox {
+  align-self: flex-start;
+}
+
+.todos .description {
+  width: 50%;
+  align-self: center;
+}
+
+.todos #icon {
+  align-self: flex-end;
+}
+
+.clear {
+  text-align: center;
+  padding: 12px;
+  background-color: #d3d3d3;
+}
+
+.clear a {
+  text-decoration: none;
+  color: black;
+}
+
+.clear a:hover {
+  text-decoration: underline;
+  color: blue;
+}
