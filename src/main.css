@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10% 70% 50% 30%;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 3px 8px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #d3d3d3;
+  font-family: 'Roboto', sans-serif;
+}
+
+.listInput {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+  padding: 12px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.listInput input {
+  display: block;
+  border: none;
+  margin-left: 24px;
+  height: 24px;
+  width: 80%;
+}
+
+.listInput input :focus {
+  border: none;
+  outline: none;
+  width: 100%;
+  margin: 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.listInput input::placeholder {
+  font-style: italic;
+  font-size: 16px;
+}
+
+.lists {
+  list-style-type: none;
+}
+
+.todos {
+  padding: 10px;
+  display: flex;
+  gap: 5%;
+  justify-content: space-between;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.todos .description {
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.clear {
+  text-align: center;
+  padding: 12px;
+  background-color: #f5f5f5;
+}
+
+.clear a {
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  color: #708090;
+}
+
+.clear a:hover {
+  text-decoration: underline;
+  color: blue;
+}
