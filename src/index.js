@@ -1,4 +1,4 @@
-import { displayList } from './app/modules/display.js';
+import displayList from './app/modules/display.js';
 import './main.css';
 
 const todoList = [

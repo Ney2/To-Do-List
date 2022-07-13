@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
-export const displayList = (todoList) => {
+export default function displayList(todoList) {
   for (let i = 0; i < todoList.length; i += 1) {
     const todoTasks = document.querySelector('.todo-tasks');
     todoTasks.innerHTML += `
@@ -13,4 +12,4 @@ export const displayList = (todoList) => {
        </div>
       </li>`;
   }
-};
+}
