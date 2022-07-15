@@ -4,7 +4,8 @@
  # Built With
    - Html
    - Css 
-   - JavaScript and 
+   - JavaScript 
+   - ES6 and 
    - Webpack
 
 # Getting Started
@@ -15,9 +16,9 @@ Any kind of browser.
 
 ### Setup:
     1. Clone the repository (git clone https://github.com/Ney2/Webpack-Setup.git)
-    2. Then open the folder in your local environment 
-    3. Choose the file with a name index.html file
-    4. Run index.html file using any browser in your local environment
+    2. Then open the folder in your local environment using any code editor
+    3. Open terminal
+    4. Type npm start in your terminal, this will open the project in your browser
 
 # Author 
    - GitHub: [@Ney2](https://github.com/Ney2)
