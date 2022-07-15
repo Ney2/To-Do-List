@@ -1,36 +1,19 @@
-import displayList from './app/modules/display.js';
 import './main.css';
+import createList from './app/modules/newTask.js';
 
-const todoList = [
-  {
-    description: 'Complete my todo list assignment',
-    compeleted: false,
-    index: 1,
-  },
-  {
-    description: 'Ask for a review',
-    compeleted: false,
-    index: 2,
-  },
-  {
-    description: 'Have some rest',
-    compeleted: false,
-    index: 3,
-  },
-  {
-    description: 'Work with my coding partner',
-    compeleted: false,
-    index: 4,
-  },
-  {
-    description: 'Meet my friends',
-    compeleted: false,
-    index: 5,
-  },
-  {
-    description: 'Attend the stand-up meeting call',
-    compeleted: false,
-    index: 6,
-  },
-];
-displayList(todoList);
+window.addEventListener('load', () => {
+  let allTasks = [];
+  const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
+  for (let i = 0; i < getFromLocalStorage.length; i += 1) {
+    createList();
+    const listText = document.querySelectorAll('.listContent');
+    listText[i].textContent = getFromLocalStorage[i].description;
+    if (getFromLocalStorage[i].completed === true) {
+      getFromLocalStorage[i].completed = false;
+    }
+    localStorage.setItem('list', JSON.stringify(getFromLocalStorage));
+
+    // eslint-disable-next-line no-unused-vars
+    allTasks = getFromLocalStorage;
+  }
+});
