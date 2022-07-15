@@ -1,5 +1,10 @@
 import List from './class.js';
 
+const allTasks = [];
+const sendToLocalStorage = () => {
+  localStorage.setItem('list', JSON.stringify(allTasks));
+};
+
 export default function createList() {
   const form = document.querySelector('.form');
   const list = document.createElement('div');
@@ -78,12 +83,25 @@ export default function createList() {
       }
     });
   });
-}
 
-const allTasks = [];
-const sendToLocalStorage = () => {
-  localStorage.setItem('list', JSON.stringify(allTasks));
-};
+  const clearAll = document.querySelector('.clear');
+  clearAll.addEventListener('click', () => {
+    const getting = JSON.parse(localStorage.getItem('list'));
+    const variable = document.querySelectorAll('.changeBg');
+    for (let i = 0; i < variable.length; i += 1) {
+      form.removeChild(variable[i]);
+    }
+    const empty = [];
+    for (let i = 0; i < getting.length; i += 1) {
+      if (getting[i].completed === true) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+      empty.push(getting[i]);
+    }
+    localStorage.setItem('list', JSON.stringify(empty));
+  });
+}
 
 const textInput = document.getElementById('userInput');
 textInput.addEventListener('keypress', (e) => {
