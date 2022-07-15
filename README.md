@@ -4,7 +4,8 @@
  # Built With
    - Html
    - Css 
-   - JavaScript and 
+   - JavaScript 
+   - ES6 and 
    - Webpack
 
 # Getting Started
