@@ -8,8 +8,8 @@
    - ES6 and 
    - Webpack
 
-# Live Demo (if available)
-- https://ney2.github.io/To-Do-List/
+# Live Demo 
+- https://ney2.github.io/JS-Best-Practice/
 
 # Getting Started
 To get a local copy up and running follow these simple example steps.
