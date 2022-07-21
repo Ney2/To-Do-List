@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import List from '../app/modules/class.js';
 
 let list = new List('description', false, 1);
@@ -58,8 +54,6 @@ describe('complete a todo list', () => {
 
 describe('clear all', () => {
   test('clear all completed tasks from the list', () => {
-    // const input = 'new list';
-    // list = new List(input, true, 3);
     todoArray.pop();
     expect(todoArray).toHaveLength(3);
   });
