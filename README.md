@@ -23,11 +23,15 @@ Any kind of browser.
     3. Open terminal
     4. Type npm start in your terminal, this will open the project in your browser
 
-# Author 
+# Author 1
    - GitHub: [@Ney2](https://github.com/Ney2)
    - Twitter: [@KidistGuta](https://twitter.com/GutaKidist)
    - LinkedIn: [@KidistDinku](https://www.linkedin.com/in/kidist-guta-014025183/)
 
+# Author 2
+   - GitHub: 
+   - Twitter: 
+   - LinkedIn: 
 # 🤝 Contributing
 Contributions, issues, and feature requests are welcome!
 
