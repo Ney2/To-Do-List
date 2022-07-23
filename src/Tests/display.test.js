@@ -26,12 +26,6 @@ describe('add a todo list', () => {
     expect(listContainer).toHaveLength(3);
   });
 });
-//   test('add task to the list', () => {
-//     list = ('submit my assignment', false, 3);
-//     todoList.push(list);
-//     expect(todoList).toHaveLength(3);
-//   });
-// });
 
 describe('remove a todo list', () => {
   test('remove a single task from the list', () => {
