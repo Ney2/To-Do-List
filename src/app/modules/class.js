@@ -1,7 +1,5 @@
 export default class List {
-  constructor(description, completed, index) {
-    this.description = description;
-    this.completed = completed;
-    this.index = index;
+  constructor() {
+    this.tasks = JSON.parse(localStorage.getItem('list')) ? JSON.parse(localStorage.getItem('list')) : [];
   }
 }
