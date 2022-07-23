@@ -1,120 +1,70 @@
-import List from './class.js';
+// eslint-disable-next-line import/no-cycle
+import MyToDo from './display.js';
 
-const allTasks = [];
-const sendToLocalStorage = () => {
-  localStorage.setItem('list', JSON.stringify(allTasks));
-};
-
-export default function createList() {
-  const form = document.querySelector('.form');
-  const list = document.createElement('div');
-  list.className = 'input-div';
-  form.appendChild(list);
-  const checkboxes = document.createElement('input');
-  checkboxes.className = 'input';
-  checkboxes.type = 'checkbox';
-  const listText = document.createElement('p');
-  listText.className = 'listContent';
-  const threeDots = document.createElement('i');
-  threeDots.className = 'fas fa-ellipsis-v';
-  const trashIcon = document.createElement('i');
-  trashIcon.className = 'fas fa-trash-alt icon2';
-  list.append(checkboxes, listText, threeDots, trashIcon);
-
-  trashIcon.addEventListener('click', () => {
-    form.removeChild(list);
-    const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
-    const result = getFromLocalStorage.filter((word) => word.description === listText.textContent);
-    const empty = [];
-    for (let i = 0; i < getFromLocalStorage.length; i += 1) {
-      if (result[0].description === getFromLocalStorage[i].description) {
-        // eslint-disable-next-line no-continue
-        continue;
-      }
-      empty.push(getFromLocalStorage[i]);
-    }
-    localStorage.setItem('list', JSON.stringify(empty));
-  });
-
+export default function createList(todoLists) {
+  const listContainer = document.querySelector('.listContainer');
+  const addInput = document.querySelector('#add');
+  addInput.value = '';
+  const oneTask = document.createElement('li');
+  listContainer.appendChild(oneTask);
+  const taskDiv = document.createElement('div');
+  taskDiv.classList.add('taskdiv');
+  taskDiv.setAttribute('id', todoLists.index);
+  oneTask.appendChild(taskDiv);
+  const checkbox = document.createElement('input');
+  checkbox.setAttribute('type', 'checkbox');
+  checkbox.setAttribute('id', todoLists.index);
+  checkbox.classList.add('checkboxitem');
+  checkbox.checked = `${todoLists.completed ? 'checked' : ''}`;
+  taskDiv.appendChild(checkbox);
+  const inputText = document.createElement('input');
+  inputText.className = 'inputtext';
+  inputText.setAttribute('type', 'text');
+  inputText.setAttribute('id', todoLists.index);
+  inputText.setAttribute('value', todoLists.description);
+  inputText.setAttribute('disabled', '');
+  taskDiv.appendChild(inputText);
+  const ellipsis = document.createElement('button');
+  ellipsis.setAttribute('type', 'button');
+  ellipsis.classList.add('editButton');
+  ellipsis.classList.add(todoLists.index);
+  ellipsis.innerHTML = '<i class="fa-solid fa-ellipsis-vertical fa-icon fa-lg"></i>';
+  oneTask.appendChild(ellipsis);
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('deleteButton');
+  deleteButton.classList.add(todoLists.index);
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.setAttribute('id', todoLists.index);
+  deleteButton.innerHTML = `<i id="${todoLists.index}" class="fas fa-trash-alt fa-icon fa-lg"></i>`;
+  deleteButton.style.display = 'none';
+  oneTask.appendChild(deleteButton);
   // eslint-disable-next-line no-unused-vars
-  let count = 1;
-  checkboxes.addEventListener('click', () => {
-    threeDots.classList.toggle('remove-icon-active');
-    trashIcon.classList.toggle('icon2');
-    listText.classList.toggle('listContent-disable');
-    list.classList.toggle('changeBg');
-    const getting = JSON.parse(localStorage.getItem('list'));
-    const empty = [];
-    const hammasi = document.querySelectorAll('.input-div');
-    for (let i = 0; i < getting.length; i += 1) {
-      if (hammasi[i].classList.contains('changeBg')) {
-        getting[i].completed = true;
-        count += 1;
-      } else {
-        getting[i].completed = false;
-      }
-      empty.push(getting[i]);
-      localStorage.setItem('list', JSON.stringify(empty));
-    }
+  ellipsis.addEventListener('click', (e) => {
+    const siblingDeleteBtn = document.getElementsByClassName(
+      `deleteButton ${todoLists.index}`,
+    )[0];
+    inputText.disabled = false;
+    inputText.focus();
+    ellipsis.style.display = 'none';
+    siblingDeleteBtn.style.display = 'block';
   });
-
-  threeDots.addEventListener('click', () => {
-    const editInput = document.createElement('input');
-    editInput.type = 'text';
-    editInput.className = 'listContent';
-    editInput.style.backgroundColor = '#fffed3';
-    list.style.backgroundColor = '#fffed3';
-    editInput.value = listText.textContent;
-    list.replaceChild(editInput, listText);
-    editInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && editInput.value) {
-        const getting = JSON.parse(localStorage.getItem('list'));
-        const result = getting.filter((word) => word.description === listText.textContent);
-        const empty = [];
-        for (let i = 0; i < getting.length; i += 1) {
-          if (getting[i].index === result[0].index) {
-            getting[i].description = editInput.value;
-          }
-          empty.push(getting[i]);
-          localStorage.setItem('list', JSON.stringify(empty));
-        }
-        list.replaceChild(listText, editInput);
-        listText.textContent = editInput.value;
-      }
-    });
+  deleteButton.addEventListener('click', (e) => {
+    const DeleteItem = new MyToDo();
+    DeleteItem.removeFromToDo(e.target.id);
   });
-
-  const clearAll = document.querySelector('.clear');
-  clearAll.addEventListener('click', () => {
-    const getting = JSON.parse(localStorage.getItem('list'));
-    const variable = document.querySelectorAll('.changeBg');
-    for (let i = 0; i < variable.length; i += 1) {
-      form.removeChild(variable[i]);
+  checkbox.addEventListener('change', (e) => {
+    const checkedTasks = new MyToDo();
+    checkedTasks.checkTasks(e.target.id, e.target.checked);
+  });
+  inputText.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      inputText.placeholder = inputText.value;
+      ellipsis.style.display = 'block';
+      deleteButton.style.display = 'none';
+      inputText.removeAttribute('disabled');
+      const ListTask = new MyToDo();
+      ListTask.editItem(inputText.id, inputText.value);
+      inputText.setAttribute('disabled', '');
     }
-    const empty = [];
-    for (let i = 0; i < getting.length; i += 1) {
-      if (getting[i].completed === true) {
-        // eslint-disable-next-line no-continue
-        continue;
-      }
-      empty.push(getting[i]);
-    }
-    localStorage.setItem('list', JSON.stringify(empty));
   });
 }
-
-const textInput = document.getElementById('userInput');
-textInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter' && textInput.value) {
-    const object = new List(textInput.value, false, allTasks.length);
-    allTasks.push(object);
-    e.preventDefault();
-    createList();
-    const listText = document.querySelectorAll('.listContent');
-    for (let i = 0; i < allTasks.length; i += 1) {
-      listText[i].textContent = allTasks[i].description;
-    }
-    textInput.value = null;
-    sendToLocalStorage();
-  }
-});

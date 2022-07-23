@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import List from '../app/modules/class.js';
 
 let list = new List('description', false, 1);
@@ -35,5 +31,30 @@ describe('remove a todo list', () => {
   test('remove a single task from the list', () => {
     todoArray.pop();
     expect(todoArray).toHaveLength(2);
+  });
+});
+
+describe('edit todo list', () => {
+  test('edit a task from the list', () => {
+    const input = 'new list';
+    list = new List(input, false, 3);
+    todoArray.push(list);
+    expect(list.description).toBe(input);
+  });
+});
+
+describe('complete a todo list', () => {
+  test('complete a task from the list', () => {
+    const input = 'new list';
+    list = new List(input, true, 4);
+    todoArray.push(list);
+    expect(list.completed).toBeTruthy();
+  });
+});
+
+describe('clear all', () => {
+  test('clear all completed tasks from the list', () => {
+    todoArray.pop();
+    expect(todoArray).toHaveLength(3);
   });
 });
